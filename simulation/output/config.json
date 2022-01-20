@@ -1,0 +1,75 @@
+{
+  "network": "/home/nest/Documents/v1model/simulation/circuit_config.json",
+  "simulation": "/home/nest/Documents/v1model/simulation/simulation_config.json",
+  "config_path": "/home/nest/Documents/v1model/simulation/config.json",
+  "config_dir": "/home/nest/Documents/v1model/simulation",
+  "components": {
+    "__pycache___dir": "/home/nest/Documents/v1model/simulation/components/__pycache__",
+    "point_neuron_models_dir": "/home/nest/Documents/v1model/simulation/components/point_neuron_models",
+    "synaptic_models_dir": "/home/nest/Documents/v1model/simulation/components/synaptic_models"
+  },
+  "networks": {
+    "nodes": [
+      {
+        "nodes_file": "/home/nest/Documents/v1model/simulation/network/V1_nodes.h5",
+        "node_types_file": "/home/nest/Documents/v1model/simulation/network/V1_node_types.csv"
+      },
+      {
+        "nodes_file": "/home/nest/Documents/v1model/simulation/network/LGN_nodes.h5",
+        "node_types_file": "/home/nest/Documents/v1model/simulation/network/LGN_node_types.csv"
+      }
+    ],
+    "edges": [
+      {
+        "edge_types_file": "/home/nest/Documents/v1model/simulation/network/LGN_V1_edge_types.csv",
+        "edges_file": "/home/nest/Documents/v1model/simulation/network/LGN_V1_edges.h5"
+      },
+      {
+        "edges_file": "/home/nest/Documents/v1model/simulation/network/V1_V1_edges.h5",
+        "edge_types_file": "/home/nest/Documents/v1model/simulation/network/V1_V1_edge_types.csv"
+      }
+    ],
+    "gap_juncs": []
+  },
+  "target_simulator": "NEST",
+  "run": {
+    "tstart": 0.0,
+    "tstop": 3000.0,
+    "dt": 0.01
+  },
+  "inputs": {
+    "LGN_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "/home/nest/Documents/v1model/simulation/inputs/lgn_spikes.h5",
+      "node_set": "LGN"
+    },
+    "exc_perturbation": {
+      "input_type": "current_clamp",
+      "module": "IClamp",
+      "node_set": {
+        "population": "V1",
+        "pop_name": "PV"
+      },
+      "amp": 400.0,
+      "delay": 1500.0,
+      "duration": 500.0
+    }
+  },
+  "output": {
+    "log_file": "/home/nest/Documents/v1model/simulation/output/log.txt",
+    "output_dir": "/home/nest/Documents/v1model/simulation/output",
+    "spikes_file": "/home/nest/Documents/v1model/simulation/output/spikes.h5",
+    "quiet_simulator": true
+  },
+  "reports": {},
+  "node_sets_file": "/home/nest/Documents/v1model/simulation/node_sets.json",
+  "node_sets": {
+    "biophysical_nodes": {
+      "model_type": "biophysical"
+    },
+    "point_nodes": {
+      "model_type": "point_process"
+    }
+  }
+}
